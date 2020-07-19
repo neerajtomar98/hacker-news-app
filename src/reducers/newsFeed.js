@@ -24,6 +24,35 @@ const newsFeed = (state = initialState, action = {}) => {
                 .set('error', action.error)
                 .set('isFetching', false);
         }
+        case actionConsts.get('UPVOTE_NEWS_ITEM'): {
+            let itemId = action.payload;
+            let updatedItems = state.get('feedItems');
+            updatedItems = updatedItems.update(
+                updatedItems.findIndex(function (item) {
+                    return item.get("objectID") === itemId;
+                }), function (item) {
+                    let points = item.get('points');
+                    return item.set("points", points + 1);
+                }
+            );
+            return state
+                .set('feedItems', updatedItems)
+                .set('error', action.error)
+                .set('isFetching', false);
+        }
+        case actionConsts.get('HIDE_NEWS_ITEM'): {
+            let itemId = action.payload;
+            let updatedItems = state.get('feedItems');
+            updatedItems = updatedItems.delete(
+                updatedItems.findIndex(function (item) {
+                    return item.get("objectID") === itemId;
+                })
+            );
+            return state
+                .set('feedItems', updatedItems)
+                .set('error', action.error)
+                .set('isFetching', false);
+        }
         default:
             return state;
     }

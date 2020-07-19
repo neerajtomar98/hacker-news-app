@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from './feed.module.sass';
 import FeedItem from './feedItem/FeedItem';
+import { ReactComponent as Loader } from 'assets/loader.svg';
 
 class Feed extends React.PureComponent {
 
@@ -16,22 +17,29 @@ class Feed extends React.PureComponent {
         return (
             <div className={styles["feed-header"]} >
                 <div>
-                    <strong> Comments</strong>
+                    Comments
                 </div>
                 <div>
-                    <strong> Vote Count</strong>
+                    Vote Count
                 </div>
                 <div>
-                    <strong> UpVote</strong>
+                    UpVote
                 </div>
                 <div>
-                    <strong> News Details</strong>
+                    News Details
                 </div>
             </div >
         )
     }
 
     renderNewsFeeds = () => {
+        if (this.props.newsFeed.get('isFetching')) {
+            return (
+                <div className={styles['loader-container']}>
+                    <div className={styles["loader-icon"]}><Loader /></div>
+                </div>);
+        }
+
         let newsList = [];
         let feedItems = this.props.newsFeed.get('feedItems');
 
@@ -40,6 +48,8 @@ class Feed extends React.PureComponent {
                 <FeedItem
                     key={item.get('objectID')}
                     newsData={item}
+                    onHideNews={this.props.onHideNews}
+                    onUpVoteNews={this.props.onUpVoteNews}
                 />
             );
         });

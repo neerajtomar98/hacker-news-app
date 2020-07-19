@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styles from './feedItem.module.sass';
-import { timeElapsed } from 'utils/helpers';
+import { timeElapsedSince } from 'utils/helpers';
 import SortArrowUp from 'assets/sort-up-arrow.png';
 
 class FeedItem extends React.PureComponent {
@@ -11,6 +11,14 @@ class FeedItem extends React.PureComponent {
         this.state = {
 
         }
+    }
+
+    onHideNews = (event) => {
+        this.props.onHideNews(this.props.newsData.get('objectID'));
+    }
+
+    onUpVoteNews = (event) => {
+        this.props.onUpVoteNews(this.props.newsData.get('objectID'));
     }
 
     getNewsDetails = () => {
@@ -28,11 +36,13 @@ class FeedItem extends React.PureComponent {
                 </span>
                 &nbsp;
                 <span className={styles["time-elapsed"]}>
-                    {timeElapsed((new Date()).getTime(), this.props.newsData.get('created_at_i'))}
+                    {timeElapsedSince(this.props.newsData.get('created_at_i'))}
                     &nbsp;[&nbsp;
                 </span>
 
-                <span className={styles["hide-action"]}>
+                <span
+                    className={styles["hide-action"]}
+                    onClick={this.onHideNews}>
                     hide
                  </span>
                 <span className={styles['url']}>
@@ -58,6 +68,7 @@ class FeedItem extends React.PureComponent {
                         className={styles['upvote-image']}
                         src={SortArrowUp}
                         alt="upvote-image"
+                        onClick={this.onUpVoteNews}
                     />
                 </div>
                 {this.getNewsDetails()}

@@ -1,12 +1,14 @@
-export const timeElapsed = (current, previous) => {
+export const timeElapsedSince = (timeStamp) => {
 
-    var msPerMinute = 60 * 1000;
-    var msPerHour = msPerMinute * 60;
-    var msPerDay = msPerHour * 24;
-    var msPerMonth = msPerDay * 30;
-    var msPerYear = msPerDay * 365;
+    let msPerMinute = 60 * 1000;
+    let msPerHour = msPerMinute * 60;
+    let msPerDay = msPerHour * 24;
+    let msPerMonth = msPerDay * 30;
+    let msPerYear = msPerDay * 365;
 
-    var timePassed = current - previous;
+    let current = Math.round((new Date()).getTime() / 1000);
+
+    let timePassed = current - timeStamp;
 
     if (timePassed < msPerMinute) {
         return Math.round(timePassed / 1000) + ' seconds ago';

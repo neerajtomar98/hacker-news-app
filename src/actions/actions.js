@@ -1,7 +1,9 @@
 import {
     fetchNewsFeedBegin,
     fetchNewsFeedSuccess,
-    fetchNewsFeedError
+    fetchNewsFeedError,
+    upVoteNewsItem,
+    hideNewsItem
 } from './actionCreators';
 import urls from '../constants/urls';
 
@@ -20,5 +22,17 @@ export const fetchNewsFeed = () => {
             .catch(error => {
                 dispatch(fetchNewsFeedError(error));
             })
+    }
+}
+
+export const onUpVoteNews = (newsItemId) => {
+    return (dispatch) => {
+        dispatch(upVoteNewsItem(newsItemId))
+    }
+}
+
+export const onHideNews = (newsItemId) => {
+    return (dispatch) => {
+        dispatch(hideNewsItem(newsItemId))
     }
 }

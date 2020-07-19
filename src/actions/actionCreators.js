@@ -15,4 +15,14 @@ export const fetchNewsFeedError = (error) => ({
     error
 });
 
+export const upVoteNewsItem = (newItemId) => ({
+    type: actions.get('UPVOTE_NEWS_ITEM'),
+    payload: newItemId
+});
+
+export const hideNewsItem = (newItemId) => ({
+    type: actions.get('HIDE_NEWS_ITEM'),
+    payload: newItemId
+});
+
 
