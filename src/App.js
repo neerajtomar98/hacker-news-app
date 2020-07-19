@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
+import styles from './app.module.sass';
+import BaseContainer from './containers/BaseContainer';
 
 function App() {
     return (
-        <div className="hacker-news-app">
-            Hello World!
+        <div className={styles["hacker-news-app"]}>
+            <BaseContainer />
         </div>
     );
 }
