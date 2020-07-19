@@ -4,6 +4,7 @@ import styles from './feed.module.sass';
 import FeedItem from './feedItem/FeedItem';
 import { ReactComponent as Loader } from 'assets/loader.svg';
 import Pagination from '../pagination/Pagination';
+import UpVoteTimeLine from '../charts/UpVoteTimeLine';
 
 class Feed extends React.PureComponent {
 
@@ -66,12 +67,21 @@ class Feed extends React.PureComponent {
         return <div className={styles['news-feed-items']}>{newsList}</div>;
     }
 
+    renderUpVoteTimeLine = () => {
+        return (
+            <UpVoteTimeLine
+                {...this.props}
+            />
+        );
+    }
+
     render() {
         const feed = (
             <div className={styles["news-feed-container"]}>
                 <div className={styles["news-feed-content"]}>
                     {this.renderHeader()}
                     {this.renderNewsFeeds()}
+                    {this.renderUpVoteTimeLine()}
                 </div>
             </div>
         );

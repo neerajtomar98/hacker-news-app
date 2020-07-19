@@ -69,6 +69,7 @@ class FeedItem extends React.PureComponent {
                         src={SortArrowUp}
                         label="upvote-image"
                         onClick={this.onUpVoteNews}
+                        alt="upvote-button"
                     />
                 </div>
                 {this.getNewsDetails()}
