@@ -44,7 +44,6 @@ class Feed extends React.PureComponent {
 
         let newsList = [];
         let feedItems = this.props.newsFeed.get('feedItems');
-
         feedItems.forEach(item => {
             newsList.push(
                 <FeedItem
@@ -70,6 +69,7 @@ class Feed extends React.PureComponent {
     renderUpVoteTimeLine = () => {
         return (
             <UpVoteTimeLine
+                key={this.props.newsFeed.get('feedItems')}
                 {...this.props}
             />
         );

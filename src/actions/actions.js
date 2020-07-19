@@ -5,14 +5,27 @@ import {
     upVoteNewsItem,
     hideNewsItem
 } from './actionCreators';
+import Immutable from 'immutable';
 
 import urls from 'constants/urls';
 import { appendQueryParameters } from 'utils/helpers';
+import { loadState } from 'store/sessionStorage';
 
-export const fetchNewsFeed = (url = "") => {
+export const fetchNewsFeed = (url = "", queryParams = { page: 0 }) => {
     if (!url) {
         url = urls.get('FETCH_NEWS_FEED_ITEMS');
     }
+    if (queryParams) {
+        url = appendQueryParameters(url, queryParams);
+    }
+    const cachedState = loadState();
+    if (cachedState
+        && cachedState.newsFeed
+        && cachedState.newsFeed.page == queryParams.page
+    ) {
+        return dispatch => Immutable.fromJS(cachedState.newsFeed);
+    }
+
     return dispatch => {
         dispatch(fetchNewsFeedBegin());
         fetch(url)
@@ -45,10 +58,8 @@ export const onHideNews = (newsItemId) => {
 export const goToPreviousPage = () => {
     return (dispatch, getState) => {
         let currentPage = getState().getIn(['newsFeed', 'page']);
-        console.log(currentPage);
         if (currentPage > 0) {
-            let url = appendQueryParameters(urls.get('FETCH_NEWS_FEED_ITEMS'), { page: parseInt(currentPage - 1) });
-            dispatch(fetchNewsFeed(url));
+            dispatch(fetchNewsFeed(null, { page: parseInt(currentPage - 1) }));
         }
     }
 }
@@ -58,8 +69,7 @@ export const goToNextPage = () => {
         let currentPage = getState().getIn(['newsFeed', 'page']);
         let totalPages = getState().getIn(['newsFeed', 'totalPages']);
         if (currentPage < totalPages) {
-            let url = appendQueryParameters(urls.get('FETCH_NEWS_FEED_ITEMS'), { page: parseInt(currentPage + 1) });
-            dispatch(fetchNewsFeed(url));
+            dispatch(fetchNewsFeed(null, { page: parseInt(currentPage + 1) }));
         }
     }
 

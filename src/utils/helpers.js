@@ -47,3 +47,17 @@ export const appendQueryParameters = (url, queryParameters = {}) => {
     queryString = queryString.slice(0, -1);
     return (url + queryString);
 }
+
+
+export const getQueryParamsObjectFromQueryString = (queryString) => {
+    if (queryString === undefined || queryString === "" || typeof queryString !== 'string') {
+        return {};
+    }
+    let keys = queryString.slice(1).split('&');
+    let queryParamObject = {};
+    keys.forEach((key) => {
+        key = key.split('=');
+        queryParamObject[key[0]] = decodeURIComponent(key[1] || '');
+    });
+    return queryParamObject;
+}
