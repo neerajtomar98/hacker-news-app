@@ -3,81 +3,70 @@ import React from 'react';
 import styles from './feedItem.module.sass';
 import { timeElapsedSince } from 'utils/helpers';
 import SortArrowUp from 'assets/sort-up-arrow.png';
+import { getBaseUrl } from 'utils/helpers';
 
-class FeedItem extends React.PureComponent {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
-    onHideNews = (event) => {
-        this.props.onHideNews(this.props.newsData.get('objectID'));
-    }
-
-    onUpVoteNews = (event) => {
-        this.props.onUpVoteNews(this.props.newsData.get('objectID'));
-    }
-
-    getNewsDetails = () => {
-        const newsDetails = (
-            <div className={styles["news-details"]}>
-                <span className={styles["title"]}>
-                    {this.props.newsData.get('title')}
-                </span>
-                &nbsp;
+const getNewsDetails = (props) => {
+    const newsDetails = (
+        <div className={styles["news-details"]}>
+            <a className={styles["title"]} href={props.newsData.get('url')} >
+                {props.newsData.get('title')}
+            </a>
+            &nbsp;
+            {props.newsData.get('url') ?
                 <span className={styles["url"]}>
-                    {"("} {this.props.newsData.get('url')} {") by "}
+                    {"("} {getBaseUrl(props.newsData.get('url'), false)} {") by "}
                 </span>
-                <span className={styles["author"]}>
-                    {this.props.newsData.get('author')}
+                : null
+            }
+            <span className={styles['url']}>
+                &nbsp;by&nbsp;
                 </span>
-                &nbsp;
-                <span className={styles["time-elapsed"]}>
-                    {timeElapsedSince(this.props.newsData.get('created_at_i'))}
-                    &nbsp;[&nbsp;
-                </span>
+            <span className={styles["author"]}>
+                {props.newsData.get('author')}
+            </span>
+            &nbsp;
+            <span className={styles["time-elapsed"]}>
+                {timeElapsedSince(props.newsData.get('created_at_i'))}
+                &nbsp;[&nbsp;
+            </span>
 
-                <span
-                    className={styles["hide-action"]}
-                    onClick={this.onHideNews}>
-                    hide
-                 </span>
-                <span className={styles['url']}>
-                    &nbsp;]&nbsp;
-                    </span>
+            <span
+                className={styles["hide-action"]}
+                onClick={(event) => props.onHideNews(props.newsData.get('objectID'))}>
+                hide
+             </span>
+            <span className={styles['url']}>
+                &nbsp;]&nbsp;
+                </span>
+        </div>
+    );
+    return newsDetails;
+}
+
+
+const FeedItem = (props) => {
+
+
+    const FeedItem = (
+        <div className={styles["feed-item-content"]}>
+            <div label="number of comments">
+                {props.newsData.get('num_comments')}
             </div>
-        );
-        return newsDetails;
-    }
-
-
-    render() {
-        const FeedItem = (
-            <div className={styles["feed-item-content"]}>
-                <div label="number of comments">
-                    {this.props.newsData.get('num_comments')}
-                </div>
-                <div label="number of points">
-                    {this.props.newsData.get('points')}
-                </div>
-                <div>
-                    <img
-                        className={styles['upvote-image']}
-                        src={SortArrowUp}
-                        label="upvote-image"
-                        onClick={this.onUpVoteNews}
-                        alt="upvote-button"
-                    />
-                </div>
-                {this.getNewsDetails()}
+            <div label="number of points">
+                {props.newsData.get('points')}
             </div>
-        );
-        return FeedItem;
-    }
-
+            <div>
+                <img
+                    className={styles['upvote-image']}
+                    src={SortArrowUp}
+                    label="upvote-image"
+                    onClick={(event) => props.onUpVoteNews(props.newsData.get('objectID'))}
+                    alt="upvote-button"
+                />
+            </div>
+            {getNewsDetails(props)}
+        </div>);
+    return FeedItem;
 }
 
 export default FeedItem;

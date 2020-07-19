@@ -61,3 +61,14 @@ export const getQueryParamsObjectFromQueryString = (queryString) => {
     });
     return queryParamObject;
 }
+
+export const getBaseUrl = (urlString, withProtocol = true) => {
+    if (!urlString) {
+        return "";
+    }
+    var pathArray = urlString.split('/');
+    var protocol = pathArray[0];
+    var host = pathArray[2];
+    var url = withProtocol ? protocol + '//' + host : host;
+    return url;
+} 
