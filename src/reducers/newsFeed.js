@@ -5,7 +5,8 @@ const initialState = Immutable.fromJS({
     feedItems: [],
     isFetching: false,
     error: null,
-    page: 1
+    page: 0,
+    totalPages: 0
 
 });
 
@@ -17,12 +18,16 @@ const newsFeed = (state = initialState, action = {}) => {
         case actionConsts.get('FETCH_NEWS_FEED_SUCCESS'): {
             let newsFeed = action.payload.hits;
             return state.set('feedItems', Immutable.fromJS(newsFeed))
-                .set('isFetching', false);
+                .set('isFetching', false)
+                .set('page', action.payload.page)
+                .set('totalPages', action.payload.nbPages);
         }
         case actionConsts.get('FETCH_NEWS_FEED_ERROR'): {
             return state
                 .set('error', action.error)
-                .set('isFetching', false);
+                .set('isFetching', false)
+                .set('page', 0)
+                .set('totalPages', 0);
         }
         case actionConsts.get('UPVOTE_NEWS_ITEM'): {
             let itemId = action.payload;

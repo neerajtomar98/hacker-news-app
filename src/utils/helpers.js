@@ -34,3 +34,16 @@ export const timeElapsedSince = (timeStamp) => {
         return Math.round(timePassed / msPerYear) + ' years ago';
     }
 }
+
+export const appendQueryParameters = (url, queryParameters = {}) => {
+    let queryString = url.indexOf('?') !== -1 ? "&" : "?";
+
+    for (const key in queryParameters) {
+        if (queryParameters.hasOwnProperty(key) && queryParameters[key] !== null && queryParameters[key] !== undefined) {
+            queryString += `${key}=${queryParameters[key]}&`;
+        }
+    }
+
+    queryString = queryString.slice(0, -1);
+    return (url + queryString);
+}

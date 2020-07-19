@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './feed.module.sass';
 import FeedItem from './feedItem/FeedItem';
 import { ReactComponent as Loader } from 'assets/loader.svg';
+import Pagination from '../pagination/Pagination';
 
 class Feed extends React.PureComponent {
 
@@ -53,6 +54,14 @@ class Feed extends React.PureComponent {
                 />
             );
         });
+
+        newsList.push(
+            <Pagination
+                key="prev-next"
+                goToPreviousPage={this.props.goToPreviousPage}
+                goToNextPage={this.props.goToNextPage}
+            />
+        );
 
         return <div className={styles['news-feed-items']}>{newsList}</div>;
     }

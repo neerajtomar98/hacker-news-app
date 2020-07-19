@@ -57,17 +57,17 @@ class FeedItem extends React.PureComponent {
     render() {
         const FeedItem = (
             <div className={styles["feed-item-content"]}>
-                <div>
+                <div label="number of comments">
                     {this.props.newsData.get('num_comments')}
                 </div>
-                <div>
+                <div label="number of points">
                     {this.props.newsData.get('points')}
                 </div>
                 <div>
                     <img
                         className={styles['upvote-image']}
                         src={SortArrowUp}
-                        alt="upvote-image"
+                        label="upvote-image"
                         onClick={this.onUpVoteNews}
                     />
                 </div>

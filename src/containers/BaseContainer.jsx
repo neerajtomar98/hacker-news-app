@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchNewsFeed, onHideNews, onUpVoteNews } from 'actions/actions';
+import {
+    fetchNewsFeed,
+    onHideNews,
+    onUpVoteNews,
+    goToNextPage,
+    goToPreviousPage
+} from 'actions/actions';
 import Feed from 'components/feed/Feed';
 
 class BaseContainer extends React.PureComponent {
@@ -22,7 +28,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchNewsFeed: () => dispatch(fetchNewsFeed()),
     onHideNews: (newsItemId) => dispatch(onHideNews(newsItemId)),
-    onUpVoteNews: (newsItemId) => dispatch(onUpVoteNews(newsItemId))
+    onUpVoteNews: (newsItemId) => dispatch(onUpVoteNews(newsItemId)),
+    goToPreviousPage: () => dispatch(goToPreviousPage()),
+    goToNextPage: () => dispatch(goToNextPage())
+
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BaseContainer);
