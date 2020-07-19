@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './app.module.sass';
 import BaseContainer from './containers/BaseContainer';
+import { HashRouter, Route } from 'react-router-dom';
 
 function App() {
     return (
@@ -9,5 +10,14 @@ function App() {
         </div>
     );
 }
+const appRoutes = (
+    <div>
+        <Route exact path="/" component={App} />
+        <Route exact path="/news" component={App} />
+    </div>
 
-export default App;
+);
+
+const AppRouter = () => <HashRouter>{appRoutes}</HashRouter>;
+export default AppRouter;
+

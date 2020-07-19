@@ -9,14 +9,14 @@ const Pagination = (props) => {
                 type="button"
                 className={styles["prev-button"]}
                 value="Previous"
-                onClick={(event) => { console.log("prev"); props.goToPreviousPage() }}
+                onClick={(event) => { props.goToPreviousPage() }}
             />
-            <div className="vl"></div>
+            <div className={styles["vl"]}></div>
             <input
                 type="button"
                 className={styles["prev-button"]}
                 value="Next"
-                onClick={(event) => { console.log("next"); props.goToNextPage() }}
+                onClick={(event) => { props.goToNextPage() }}
             />
         </div>
 

@@ -21,7 +21,7 @@ export const fetchNewsFeed = (url = "", queryParams = { page: 0 }) => {
     const cachedState = loadState();
     if (cachedState
         && cachedState.newsFeed
-        && cachedState.newsFeed.page == queryParams.page
+        && cachedState.newsFeed.page === queryParams.page
     ) {
         return dispatch => Immutable.fromJS(cachedState.newsFeed);
     }
