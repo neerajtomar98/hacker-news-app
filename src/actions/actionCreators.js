@@ -24,5 +24,8 @@ export const hideNewsItem = (newItemId) => ({
     type: actions.get('HIDE_NEWS_ITEM'),
     payload: newItemId
 });
-
+export const setQueryParamsToStore = queryParamObject => ({
+    type: actions.get("SET_QUERY_PARAMS_TO_STORE"),
+    queryParamObject
+});
 

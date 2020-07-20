@@ -58,6 +58,9 @@ const newsFeed = (state = initialState, action = {}) => {
                 .set('error', action.error)
                 .set('isFetching', false);
         }
+        case actionConsts.get('SET_ADMIN_JOURNEYS_QUERY_PARAMS_TO_STORE'):
+            return state.set('page', parseInt(action.queryParamObject.page, 10))
+
         default:
             return state;
     }

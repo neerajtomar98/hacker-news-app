@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './app.module.sass';
 import BaseContainer from './containers/BaseContainer';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import NotFound from 'components/notFound/NotFound';
 
 function App() {
     return (
@@ -11,11 +12,11 @@ function App() {
     );
 }
 const appRoutes = (
-    <div>
+    <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/news" component={App} />
-    </div>
-
+        <Route exact path="/*" component={NotFound} />
+    </Switch>
 );
 
 const AppRouter = () => <HashRouter>{appRoutes}</HashRouter>;

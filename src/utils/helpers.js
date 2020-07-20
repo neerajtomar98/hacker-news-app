@@ -1,3 +1,7 @@
+export const isEmptyObject = (obj = {}) => {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
 export const timeElapsedSince = (timeStamp) => {
 
     let msPerMinute = 60 * 1000;
@@ -35,33 +39,6 @@ export const timeElapsedSince = (timeStamp) => {
     }
 }
 
-export const appendQueryParameters = (url, queryParameters = {}) => {
-    let queryString = url.indexOf('?') !== -1 ? "&" : "?";
-
-    for (const key in queryParameters) {
-        if (queryParameters.hasOwnProperty(key) && queryParameters[key] !== null && queryParameters[key] !== undefined) {
-            queryString += `${key}=${queryParameters[key]}&`;
-        }
-    }
-
-    queryString = queryString.slice(0, -1);
-    return (url + queryString);
-}
-
-
-export const getQueryParamsObjectFromQueryString = (queryString) => {
-    if (queryString === undefined || queryString === "" || typeof queryString !== 'string') {
-        return {};
-    }
-    let keys = queryString.slice(1).split('&');
-    let queryParamObject = {};
-    keys.forEach((key) => {
-        key = key.split('=');
-        queryParamObject[key[0]] = decodeURIComponent(key[1] || '');
-    });
-    return queryParamObject;
-}
-
 export const getBaseUrl = (urlString, withProtocol = true) => {
     if (!urlString) {
         return "";
@@ -71,4 +48,5 @@ export const getBaseUrl = (urlString, withProtocol = true) => {
     var host = pathArray[2];
     var url = withProtocol ? protocol + '//' + host : host;
     return url;
-} 
+}
+
