@@ -1,7 +1,9 @@
 
 This app simulates [ Hacker News ](https://news.ycombinator.com/) and plots a timeline chart for upvotes for each news feed item. 
+It fetches the news feed with front_page tag from https://hn.algolia.com/api api.
 
 ### Functionalities provided
+- shows the front page feed with upvote timeline chart.
 - upvote and hide functionalities and updates the timeline chart in real time.
 - The updated state is cached using sessionStorage and changes persist on refreshing the page.
 - The app uses hashRouter with pagination and bookmarkable pages.
