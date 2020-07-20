@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './app.module.sass';
 import BaseContainer from './containers/BaseContainer';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { StaticRouter, HashRouter, Route, Switch } from 'react-router-dom';
 import NotFound from 'components/notFound/NotFound';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         </div>
     );
 }
-const appRoutes = (
+export const appRoutes = (
     <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/news" component={App} />
@@ -20,5 +20,6 @@ const appRoutes = (
 );
 
 const AppRouter = () => <HashRouter>{appRoutes}</HashRouter>;
+// const AppRouter = () => <StaticRouter>{appRoutes}</StaticRouter>;
 export default AppRouter;
 

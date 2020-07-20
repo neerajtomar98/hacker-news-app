@@ -8,7 +8,7 @@ import {
     goToNextPage,
     goToPreviousPage,
     updateRouteDataToStore
-} from 'actions/actions';
+} from '../actions/actions';
 import Feed from 'components/feed/Feed';
 import { getQueryParamsObjectFromQueryString } from "utils/routeHelpers";
 

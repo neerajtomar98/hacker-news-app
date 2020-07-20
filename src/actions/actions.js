@@ -7,15 +7,15 @@ import {
     hideNewsItem,
     setQueryParamsToStore
 } from './actionCreators';
-import { loadState } from 'store/sessionStorage';
-import urls from 'constants/urls';
+import { loadState } from '../store/sessionStorage';
+import urls from '../constants/urls';
 import {
     updateRouteSearch,
     appendQueryParameters,
     getQueryParamsObjectFromQueryString
 } from 'utils/routeHelpers';
 
-import { isEmptyObject } from 'utils/helpers';
+import { isEmptyObject } from '../utils/helpers';
 
 export const fetchNewsFeed = (queryParamsString = "") => {
     console.log(queryParamsString);

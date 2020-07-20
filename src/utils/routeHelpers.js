@@ -5,6 +5,9 @@ const history = createHashHistory({
     hashType: 'slash'
 });
 
+// import { createMemoryHistory } from 'history';
+// const history = createMemoryHistory();
+
 export const appendQueryParameters = (url, queryParameters = {}) => {
     let queryString = url.indexOf('?') !== -1 ? "&" : "?";
 
