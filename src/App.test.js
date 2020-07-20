@@ -1,9 +1,24 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import App from './App'
+import mockStore from './utils/mockStoreUtil';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+const mockState = {
+    newsFeed: {
+        feedItems: [],
+        isFetching: false,
+        error: null,
+        page: 0,
+        totalPages: 0
+    }
+};
+
+const store = mockStore(mockState);
+
+describe('App', () => {
+    it('renders without crashing', () => {
+        const wrapper = shallow(<App store={store} />)
+        expect(toJson(wrapper)).toMatchSnapshot()
+    })
+})

@@ -68,7 +68,7 @@ export const goToNextPage = () => {
     return (dispatch, getState) => {
         let currentPage = getState().getIn(['newsFeed', 'page']);
         let totalPages = getState().getIn(['newsFeed', 'totalPages']);
-        if (currentPage < totalPages) {
+        if (currentPage + 1 < totalPages) {
             dispatch(fetchNewsFeed(null, { page: parseInt(currentPage + 1) }));
         }
     }

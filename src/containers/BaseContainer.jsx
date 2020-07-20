@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 import {
     fetchNewsFeed,
     onHideNews,
@@ -35,4 +36,10 @@ const mapDispatchToProps = dispatch => ({
 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BaseContainer);
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BaseContainer));
+
+
+export { BaseContainer };
