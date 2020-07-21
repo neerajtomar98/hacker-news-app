@@ -19,7 +19,11 @@ export const appRoutes = (
     </Switch>
 );
 
-const AppRouter = () => <HashRouter>{appRoutes}</HashRouter>;
-// const AppRouter = () => <StaticRouter>{appRoutes}</StaticRouter>;
+var AppRouter = () => <StaticRouter>{appRoutes}</StaticRouter>;
+
+if (typeof window !== 'undefined') {
+    AppRouter = () => <HashRouter>{appRoutes}</HashRouter>;
+}
+
 export default AppRouter;
 

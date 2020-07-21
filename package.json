@@ -1,7 +1,7 @@
 {
     "name": "hacker-news-app",
     "version": "0.1.0",
-    "homepage": "./src/",
+    "homepage": ".",
     "private": true,
     "dependencies": {
         "@babel/preset-env": "^7.10.4",
@@ -12,9 +12,11 @@
         "@testing-library/user-event": "^7.1.2",
         "chart.js": "^2.9.3",
         "express": "^4.17.1",
+        "express-favicon": "^2.0.1",
         "ignore-styles": "^5.0.1",
         "immutable": "^4.0.0-rc.12",
         "node-sass": "^4.14.1",
+        "path": "^0.12.7",
         "query-string": "^6.13.1",
         "react": "^16.13.1",
         "react-chartjs-2": "^2.9.0",
@@ -28,7 +30,9 @@
         "redux-thunk": "^2.3.0"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "NODE_PATH=./src/ node server/index.js",
+        "heroku-postbuild": "yarn && yarn build",
+        "dev-start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

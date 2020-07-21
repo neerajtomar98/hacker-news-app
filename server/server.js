@@ -3,9 +3,9 @@ const fs = require('fs');
 const express = require('express');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-import { StaticRouter } from "react-router-dom";
-
-import { appRoutes } from '../src/App'
+import App from '../src/App'
+import store from '../src/store/store';
+import { Provider } from 'react-redux'
 
 const PORT = 8080
 const app = express()
@@ -13,7 +13,7 @@ const router = express.Router()
 
 
 const serverRenderer = (req, res, next) => {
-    fs.readFile(path.resolve('./build/index.html'), 'utf8', (err, data) => {
+    fs.readFile(path.resolve(path.join(__dirname, '../build', 'index.html')), 'utf8', (err, data) => {
         if (err) {
             console.error(err)
             return res.status(500).send('An error occurred')
@@ -22,9 +22,9 @@ const serverRenderer = (req, res, next) => {
             data.replace(
                 '<div id="root"></div>',
                 `<div id="root">${ReactDOMServer.renderToString(
-                    <StaticRouter location={req.url} context={context}>
-                        <appRoutes />
-                    </StaticRouter>
+                    <Provider store={store}>
+                        <App />
+                    </Provider>
                 )}</div>`
             )
         )

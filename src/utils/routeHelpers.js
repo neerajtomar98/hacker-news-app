@@ -1,12 +1,14 @@
 import createHashHistory from 'history/createHashHistory'
+import { createMemoryHistory } from 'history';
 import queryString from 'query-string';
 
-const history = createHashHistory({
-    hashType: 'slash'
-});
+var appHistory = createMemoryHistory();
 
-// import { createMemoryHistory } from 'history';
-// const history = createMemoryHistory();
+if (typeof window !== 'undefined') {
+    appHistory = createHashHistory({
+        hashType: 'slash'
+    });
+}
 
 export const appendQueryParameters = (url, queryParameters = {}) => {
     let queryString = url.indexOf('?') !== -1 ? "&" : "?";
@@ -37,7 +39,7 @@ export const getQueryParamsObjectFromQueryString = (queryString) => {
 
 export const updateRouteSearch = (searchObj = {}, pathname = "") => {
     searchObj = {
-        ...queryString.parse(history.location.search),
+        ...queryString.parse(appHistory.location.search),
         ...searchObj
     };
 
@@ -53,5 +55,5 @@ export const updateRouteSearch = (searchObj = {}, pathname = "") => {
             pathname
         };
     }
-    history.push(pushObj);
+    appHistory.push(pushObj);
 }
