@@ -7,7 +7,7 @@ import App from '../src/App'
 import store from '../src/store/store';
 import { Provider } from 'react-redux'
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080
 const app = express()
 const router = express.Router()
 
