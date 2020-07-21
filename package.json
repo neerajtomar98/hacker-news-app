@@ -31,7 +31,7 @@
     },
     "scripts": {
         "start": "NODE_PATH=./src/ node server/index.js",
-        "heroku-postbuild": "yarn && yarn build",
+        "heroku-postbuild": "yarn && yarn run build",
         "dev-start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
