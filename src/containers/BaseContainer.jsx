@@ -53,5 +53,5 @@ export default withRouter(connect(
     mapDispatchToProps
 )(BaseContainer));
 
-
+BaseContainer.fetchNewsFeed = fetchNewsFeed;
 export { BaseContainer };

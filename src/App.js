@@ -4,7 +4,7 @@ import BaseContainer from './containers/BaseContainer';
 import { StaticRouter, HashRouter, Route, Switch } from 'react-router-dom';
 import NotFound from 'components/notFound/NotFound';
 
-function App() {
+export function App() {
     return (
         <div className={styles["hacker-news-app"]}>
             <BaseContainer />

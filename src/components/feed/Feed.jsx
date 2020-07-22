@@ -16,8 +16,18 @@ class Feed extends React.PureComponent {
     }
 
     renderHeader = () => {
+        const headerstyles = {
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 8fr',
+            backgroundColor: '#ff6600',
+            color: 'white',
+            alignItems: 'end',
+            padding: '5px',
+            fontWeight: '800',
+            minHeight: '35px',
+        }
         return (
-            <div className={styles["feed-header"]} >
+            <div style={{ ...headerstyles }}>
                 <div>
                     Comments
                 </div>
