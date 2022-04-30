@@ -1,5 +1,5 @@
 
-This app simulates [ Hacker News ](https://news.ycombinator.com/) and plots a timeline chart for upvotes for each news feed item. 
+ [ Hacker News App ](https://hacker-news-app-timeline.herokuapp.com/) simulates [ Hacker News ](https://news.ycombinator.com/) and plots a timeline chart for upvotes for each news feed item. 
 It fetches the news feed from https://hn.algolia.com/api api.
 
 ### Functionalities provided
@@ -26,7 +26,7 @@ It fetches the news feed from https://hn.algolia.com/api api.
 ![updated route with page number ](https://github.com/neerajtomar98/hacker-news-app/blob/master/newRouteWithpage.png?raw=true)
 
 
-### Steps to run the app
+### Steps to run the app on local machine
 yarn
 yarn start
 
